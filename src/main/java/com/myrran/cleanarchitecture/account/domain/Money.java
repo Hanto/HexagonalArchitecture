@@ -3,19 +3,20 @@ package com.myrran.cleanarchitecture.account.domain;// Created by jhant on 16/05
 import lombok.NonNull;
 import lombok.Value;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Value
 public class Money
 {
     @NonNull
-    BigInteger amount;
+    BigDecimal amount;
 
     // CONSTRUCTORS:
     //--------------------------------------------------------------------------------------------------------
 
     public static Money of(long value)
-    {   return new Money(BigInteger.valueOf(value)); }
+    {   return new Money(BigDecimal.valueOf(value)); }
 
     // BUSINESS:
     //--------------------------------------------------------------------------------------------------------
@@ -25,4 +26,10 @@ public class Money
 
     public Money minus(Money money)
     {   return new Money( this.getAmount().subtract(money.getAmount()) ); }
+
+    // CALCULATIONS:
+    //--------------------------------------------------------------------------------------------------------
+
+    public boolean isPositive()
+    {   return amount.compareTo(BigDecimal.ZERO) >0; }
 }

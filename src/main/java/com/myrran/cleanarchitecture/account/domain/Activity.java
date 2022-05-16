@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor @EqualsAndHashCode(onlyExplicitlyIncluded = true) @ToString
+@AllArgsConstructor @RequiredArgsConstructor @EqualsAndHashCode(onlyExplicitlyIncluded = true) @ToString
 public class Activity
 {
     @Getter @EqualsAndHashCode.Include
