@@ -4,7 +4,6 @@ import lombok.NonNull;
 import lombok.Value;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 @Value
 public class Money

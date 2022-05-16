@@ -1,6 +1,9 @@
 package com.myrran.cleanarchitecture.account.domain;// Created by jhant on 16/05/2022.
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -55,7 +58,6 @@ public class Account
 
     private boolean areSameAccount(AccountId acc1, AccountId acc2)
     {   return acc1.equals(acc2); }
-    
 
     // CALCULATIONS:
     //--------------------------------------------------------------------------------------------------------
