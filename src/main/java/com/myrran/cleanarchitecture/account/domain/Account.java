@@ -67,5 +67,4 @@ public class Account
         Money differenceFromBaseline = lastActivities.calculateBalance(accountId);
         return baselineBalance.plus(differenceFromBaseline);
     }
-
 }

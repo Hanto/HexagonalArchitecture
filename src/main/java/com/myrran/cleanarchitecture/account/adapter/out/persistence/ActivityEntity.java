@@ -9,10 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity @Table(name = "account")
+@Entity @Table(name = "activity")
 @NoArgsConstructor @AllArgsConstructor @Data
-class AccountJPAEntity
+public class ActivityEntity
 {
     @Id @GeneratedValue
-    private Long Id;
+    private Long id;
 }
