@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 @RequiredArgsConstructor
 public class KafKaProducerAdapter
@@ -17,11 +19,17 @@ public class KafKaProducerAdapter
     // MAIN:
     //--------------------------------------------------------------------------------------------------------
 
-    public void sendMessage(String topicName, SendMoneyOrderDTO dto)
+    public void processMoneyOrder(long sourceAccountId, long targetAccountId, BigDecimal quantity)
     {
+        SendMoneyOrderDTO dto = SendMoneyOrderDTO.builder()
+            .sourceAccoundId(sourceAccountId)
+            .targetAccountId(targetAccountId)
+            .amount(quantity)
+            .build();
+
         int hash = hasher.orderIndependentHash(
             String.valueOf(dto.getSourceAccoundId()), String.valueOf(dto.getTargetAccountId()));
 
-        kafkaTemplate.send(topicName, Integer.toString(hash), dto);
+        kafkaTemplate.send("moneySendingTopic", Integer.toString(hash), dto);
     }
 }

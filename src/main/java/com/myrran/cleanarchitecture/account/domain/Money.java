@@ -14,7 +14,7 @@ public class Money
     // CONSTRUCTORS:
     //--------------------------------------------------------------------------------------------------------
 
-    public static Money of(long value)
+    public static Money of(float value)
     {   return new Money(BigDecimal.valueOf(value)); }
 
     // BUSINESS:
