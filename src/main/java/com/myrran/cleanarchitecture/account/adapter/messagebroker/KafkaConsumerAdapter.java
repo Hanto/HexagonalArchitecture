@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class KafkaConsumerAdapter
 {
     @KafkaListener(
-        groupId = "moneySendingGroupId",
-        topics =  "moneySendingTopic",
-        containerFactory = "moneySendingListener",
-        concurrency = "6")
+        groupId         = "moneySendingGroup",
+        topics          = "moneySendingTopic",
+        containerFactory= "moneySendingListener",
+        concurrency     = "6")
     public void receiveMessage(ConsumerRecord<String, SendMoneyOrderDTO>consumerRecord)
     {
         log.info(consumerRecord);
