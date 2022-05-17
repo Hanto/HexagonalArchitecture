@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityNotFoundException;
 
 @RequiredArgsConstructor @Component
-class PersistenceAdapter implements AccountDAOPort
+class JpaPersistenceAdapter implements AccountDAOPort
 {
     private final AccountRepository accountRepository;
     private final ActivityRepository activityRepository;
