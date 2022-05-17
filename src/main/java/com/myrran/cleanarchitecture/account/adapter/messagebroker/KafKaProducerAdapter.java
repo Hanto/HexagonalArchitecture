@@ -1,4 +1,4 @@
-package com.myrran.cleanarchitecture.account.adapter.out.messaging;// Created by jhant on 17/05/2022.
+package com.myrran.cleanarchitecture.account.adapter.messagebroker;// Created by jhant on 17/05/2022.
 
 import com.myrran.cleanarchitecture.common.Hasher;
 import lombok.RequiredArgsConstructor;
@@ -11,15 +11,17 @@ import org.springframework.stereotype.Component;
 public class KafKaProducerAdapter
 {
     @Autowired
-    private final KafkaTemplate<String, String>kafkaTemplate;
+    private final KafkaTemplate<String, SendMoneyOrderDTO>kafkaTemplate;
     private final Hasher hasher;
 
     // MAIN:
     //--------------------------------------------------------------------------------------------------------
 
-    public void sendMessage(String topicName, String message)
+    public void sendMessage(String topicName, SendMoneyOrderDTO dto)
     {
-        int hash = hasher.orderIndependentHash(message);
-        kafkaTemplate.send("moneySendingTopic", Integer.toString(hash), message);
+        int hash = hasher.orderIndependentHash(
+            String.valueOf(dto.getSourceAccoundId()), String.valueOf(dto.getTargetAccountId()));
+
+        kafkaTemplate.send(topicName, Integer.toString(hash), dto);
     }
 }
