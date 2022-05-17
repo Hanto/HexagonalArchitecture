@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity @Table(name = "activity")
 @NoArgsConstructor @AllArgsConstructor @Data
-public class ActivityEntity
+class ActivityEntity
 {
     @Id @GeneratedValue
     private Long id;

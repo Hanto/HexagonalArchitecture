@@ -2,6 +2,6 @@ package com.myrran.cleanarchitecture.account.adapter.out.persistence;// Created 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ActivityRepository extends JpaRepository<ActivityEntity, Long>
+interface ActivityRepository extends JpaRepository<ActivityEntity, Long>
 {
 }

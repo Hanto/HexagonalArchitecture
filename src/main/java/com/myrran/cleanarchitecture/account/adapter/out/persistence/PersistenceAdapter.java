@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityNotFoundException;
 
 @RequiredArgsConstructor @Component
-class AccountPersistenceAdapter implements AccountDAOPort
+class PersistenceAdapter implements AccountDAOPort
 {
     private final AccountRepository accountRepository;
+    private final ActivityRepository activityRepository;
 
     // BUSINESS:
     //--------------------------------------------------------------------------------------------------------
@@ -21,6 +22,7 @@ class AccountPersistenceAdapter implements AccountDAOPort
     {
         AccountEntity accountEntity = accountRepository.findById(accountId.getValue())
             .orElseThrow(EntityNotFoundException::new);
+
 
         return null;
     }

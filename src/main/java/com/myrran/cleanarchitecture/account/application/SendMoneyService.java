@@ -2,4 +2,5 @@ package com.myrran.cleanarchitecture.account.application;// Created by jhant on 
 
 public class SendMoneyService
 {
+
 }
