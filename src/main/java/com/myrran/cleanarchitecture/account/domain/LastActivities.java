@@ -26,12 +26,12 @@ public class LastActivities
         Money depositBalance = activities.stream()
             .filter(a -> a.getTargetAccountId().equals(accountId))
             .map(Activity::getMoney)
-            .reduce(Money.of(0), Money::plus);
+            .reduce(Money.ofZero(), Money::plus);
 
         Money withdrawBalance = activities.stream()
             .filter(a -> a.getSourceAccountId().equals(accountId))
             .map(Activity::getMoney)
-            .reduce(Money.of(0), Money::plus);
+            .reduce(Money.ofZero(), Money::plus);
 
         return depositBalance.minus(withdrawBalance);
     }

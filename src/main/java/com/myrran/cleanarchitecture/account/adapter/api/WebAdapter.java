@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @RestController @RequestMapping("/api/kafka")
@@ -17,8 +18,11 @@ class WebAdapter
     @Autowired private final KafKaProducerAdapter kafKaProducerAdapter;
 
     @GetMapping("send")
-    public void sendMessage(@RequestParam String message)
+    public void sendMessage(
+        @NotNull @RequestParam Long sourceAccountId,
+        @NotNull @RequestParam Long targetAccountId,
+        @NotNull @RequestParam BigDecimal amount)
     {
-        kafKaProducerAdapter.processMoneyOrder(222222L, 1111L, BigDecimal.valueOf(999));
+        kafKaProducerAdapter.processMoneyOrder(sourceAccountId, targetAccountId, amount);
     }
 }

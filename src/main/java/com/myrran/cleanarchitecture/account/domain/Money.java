@@ -17,6 +17,9 @@ public class Money
     public static Money of(float value)
     {   return new Money(BigDecimal.valueOf(value)); }
 
+    public static Money ofZero()
+    {   return new Money(BigDecimal.ZERO); }
+
     // BUSINESS:
     //--------------------------------------------------------------------------------------------------------
 
