@@ -15,7 +15,7 @@ public class HashserTest
     {
         Hasher hasher = new Hasher();
 
-        List<String> elemements = Arrays.asList("Ivan", "Johana", "Pingüito");
+        List<String> elemements = Arrays.asList("Ivan", "Johana", "Pingüito", "Pollo", "Phreak", "sourceAccount", "targetAccount");
         int expected = hasher.orderIndependentHash(elemements);
 
         for (int i=0; i<50; i++)
