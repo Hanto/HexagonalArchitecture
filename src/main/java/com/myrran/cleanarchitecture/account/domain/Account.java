@@ -28,6 +28,9 @@ public class Account
     public static Account of(AccountId accountId, Money baselineBalance, LastActivities lastActivities)
     {   return new Account(accountId, baselineBalance, lastActivities); }
 
+    public static Account of(Money baselineBalance)
+    {   return new Account(null, baselineBalance, new LastActivities()); }
+
     // BUSINESS:
     //--------------------------------------------------------------------------------------------------------
 

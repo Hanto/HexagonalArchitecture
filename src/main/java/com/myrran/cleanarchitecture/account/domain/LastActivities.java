@@ -1,19 +1,29 @@
 package com.myrran.cleanarchitecture.account.domain;// Created by jhant on 16/05/2022.
 
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class LastActivities
 {
-    private final List<Activity> activities;
+    private final List<Activity> activities = new ArrayList<>();
+
+    // CONSTRUCTORS:
+    //--------------------------------------------------------------------------------------------------------
+
+    public LastActivities(List<Activity>collection)
+    {   addActivities(collection); }
 
     // BUSINESS:
     //--------------------------------------------------------------------------------------------------------
+
+    public void addActivities(List<Activity>collection)
+    {   activities.addAll(collection); }
 
     public void addActivity(Activity activity)
     {   activities.add(activity); }
