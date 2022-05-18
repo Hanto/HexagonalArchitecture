@@ -15,7 +15,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.Map;
 
 @Configuration
-public class KafkaProducerConfiguration
+class KafkaProducerConfiguration
 {
     // MONEY SENDING: producer
     //--------------------------------------------------------------------------------------------------------

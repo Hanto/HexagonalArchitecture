@@ -1,6 +1,6 @@
 package com.myrran.cleanarchitecture.account.adapter.api;// Created by jhant on 16/05/2022.
 
-import com.myrran.cleanarchitecture.account.adapter.messagebroker.KafKaProducerAdapter;
+import com.myrran.cleanarchitecture.account.application.ports.ParallelProcessing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 class WebAdapter
 {
-    @Autowired private final KafKaProducerAdapter kafKaProducerAdapter;
+    @Autowired private final ParallelProcessing parallelProcessing;
 
     @GetMapping("send")
     public void sendMessage(
@@ -23,6 +23,6 @@ class WebAdapter
         @NotNull @RequestParam Long targetAccountId,
         @NotNull @RequestParam BigDecimal amount)
     {
-        kafKaProducerAdapter.processMoneyOrder(sourceAccountId, targetAccountId, amount);
+        parallelProcessing.processMoneyOrder(sourceAccountId, targetAccountId, amount);
     }
 }

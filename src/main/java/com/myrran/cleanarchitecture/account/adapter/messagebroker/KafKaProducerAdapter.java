@@ -1,5 +1,6 @@
 package com.myrran.cleanarchitecture.account.adapter.messagebroker;// Created by jhant on 17/05/2022.
 
+import com.myrran.cleanarchitecture.account.application.ports.ParallelProcessing;
 import com.myrran.cleanarchitecture.common.Hasher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 
 @Component
 @RequiredArgsConstructor
-public class KafKaProducerAdapter
+class KafKaProducerAdapter implements ParallelProcessing
 {
     @Autowired
     private final KafkaTemplate<String, SendMoneyOrderDTO>kafkaTemplate;
@@ -19,6 +20,7 @@ public class KafKaProducerAdapter
     // MAIN:
     //--------------------------------------------------------------------------------------------------------
 
+    @Override
     public void processMoneyOrder(long sourceAccountId, long targetAccountId, BigDecimal quantity)
     {
         SendMoneyOrderDTO dto = SendMoneyOrderDTO.builder()

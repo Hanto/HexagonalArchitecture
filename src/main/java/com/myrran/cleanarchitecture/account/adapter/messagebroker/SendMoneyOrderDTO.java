@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Builder @NoArgsConstructor @AllArgsConstructor @Getter @ToString
-public class SendMoneyOrderDTO implements Serializable
+class SendMoneyOrderDTO implements Serializable
 {
     private long sourceAccoundId;
     private long targetAccountId;
