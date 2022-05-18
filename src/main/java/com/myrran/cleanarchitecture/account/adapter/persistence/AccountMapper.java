@@ -10,7 +10,7 @@ public class AccountMapper
 {
     Account fromEntity(AccountEntity entity, List<Activity> activities)
     {
-        AccountId accountId             = new AccountId(entity.getId());
+        AccountId accountId             = new AccountId(entity.getAccountId());
         Money balance                   = new Money(entity.getBalance());
         LastActivities lastActivities   = new LastActivities(activities);
 
@@ -20,7 +20,7 @@ public class AccountMapper
     AccountEntity fromModel(Account model)
     {
         return AccountEntity.builder()
-            .id(model.getAccountId().getValue())
+            .accountId(model.getAccountId().getValue())
             .balance(model.getBalance().getAmount())
             .build();
     }
