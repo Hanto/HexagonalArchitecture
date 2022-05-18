@@ -12,11 +12,11 @@ public class Account
 {
     @Getter @EqualsAndHashCode.Include
     private final AccountId accountId;
-    
+
     @Getter
-    private final Money baselineBalance;
-    
-    @Getter 
+    private Money balance;
+
+    @Getter
     private final LastActivities lastActivities;
 
     // CONSTRUCTORS:
@@ -39,6 +39,8 @@ public class Account
         Activity withdrawal = new Activity(accountId, targetAccountId, LocalDateTime.now(), money);
         lastActivities.addActivity(withdrawal);
 
+        balance = balance.minus(money);
+
         return true;
     }
 
@@ -50,21 +52,14 @@ public class Account
         Activity deposit = new Activity(sourceAccountId, accountId, LocalDateTime.now(), money);
         lastActivities.addActivity(deposit);
 
+        balance = balance.plus(money);
+
         return true;
     }
     
     private boolean mayWithdraw(Money money)
-    {   return calculateBalance().minus(money).isPositive(); }
+    {   return balance.minus(money).isPositive(); }
 
     private boolean areSameAccount(AccountId acc1, AccountId acc2)
     {   return acc1.equals(acc2); }
-
-    // CALCULATIONS:
-    //--------------------------------------------------------------------------------------------------------
-
-    public Money calculateBalance()
-    {
-        Money differenceFromBaseline = lastActivities.calculateBalance(accountId);
-        return baselineBalance.plus(differenceFromBaseline);
-    }
 }

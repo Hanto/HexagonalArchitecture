@@ -1,18 +1,27 @@
 package com.myrran.cleanarchitecture.account.adapter.persistence;// Created by jhant on 17/05/2022.
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity @Table(name = "activity")
-@NoArgsConstructor @AllArgsConstructor @Data
+@NoArgsConstructor @AllArgsConstructor @Builder
+@Getter @Setter
 class ActivityEntity
 {
     @Id @GeneratedValue
-    private Long id;
+    private Long activityId;
+
+    private Long sourceAccountId;
+
+    private Long targetAccountId;
+
+    private LocalDateTime timestamp;
+
+    private BigDecimal money;
 }

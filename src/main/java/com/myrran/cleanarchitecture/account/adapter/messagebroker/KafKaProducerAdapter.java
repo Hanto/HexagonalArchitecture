@@ -27,8 +27,7 @@ public class KafKaProducerAdapter
             .amount(quantity)
             .build();
 
-        int hash = hasher.orderIndependentHash(
-            String.valueOf(dto.getSourceAccoundId()), String.valueOf(dto.getTargetAccountId()));
+        int hash = hasher.orderIndependentHash(String.valueOf(dto.getSourceAccoundId()));
 
         kafkaTemplate.send("moneySendingTopic", Integer.toString(hash), dto);
     }

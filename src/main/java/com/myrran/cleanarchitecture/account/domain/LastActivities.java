@@ -1,13 +1,16 @@
 package com.myrran.cleanarchitecture.account.domain;// Created by jhant on 16/05/2022.
 
+import lombok.RequiredArgsConstructor;
+
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class LastActivities
 {
-    private List<Activity> activities;
+    private final List<Activity> activities;
 
     // BUSINESS:
     //--------------------------------------------------------------------------------------------------------
