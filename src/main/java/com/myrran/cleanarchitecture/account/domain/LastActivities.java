@@ -17,7 +17,10 @@ public class LastActivities
     //--------------------------------------------------------------------------------------------------------
 
     public LastActivities(List<Activity>collection)
-    {   addActivities(collection); }
+    {   activities.addAll(collection); }
+
+    public static LastActivities of(List<Activity>collection)
+    {   return new LastActivities(collection); }
 
     // BUSINESS:
     //--------------------------------------------------------------------------------------------------------
@@ -33,21 +36,6 @@ public class LastActivities
 
     // CALCULATIONS:
     //--------------------------------------------------------------------------------------------------------
-
-    public Money calculateBalance(AccountId accountId)
-    {
-        Money depositBalance = activities.stream()
-            .filter(a -> a.getTargetAccountId().equals(accountId))
-            .map(Activity::getMoney)
-            .reduce(Money.ofZero(), Money::plus);
-
-        Money withdrawBalance = activities.stream()
-            .filter(a -> a.getSourceAccountId().equals(accountId))
-            .map(Activity::getMoney)
-            .reduce(Money.ofZero(), Money::plus);
-
-        return depositBalance.minus(withdrawBalance);
-    }
 
     public LocalDateTime getOldestActivity()
     {

@@ -7,21 +7,20 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor @EqualsAndHashCode(onlyExplicitlyIncluded = true) @ToString
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true) @ToString
 public class Account
 {
     @Getter @EqualsAndHashCode.Include
     private final AccountId accountId;
-
     @Getter
     private Money balance;
-
     @Getter
     private final LastActivities lastActivities;
 
     // CONSTRUCTORS:
     //--------------------------------------------------------------------------------------------------------
-    
+
     public static Account of(Money baselineBalance, LastActivities lastActivities)
     {   return new Account(null, baselineBalance, lastActivities); }
 
