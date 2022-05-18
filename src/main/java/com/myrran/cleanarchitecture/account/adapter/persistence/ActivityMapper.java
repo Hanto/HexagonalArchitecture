@@ -12,17 +12,19 @@ public class ActivityMapper
     Activity fromEntity(ActivityEntity entity)
     {
         ActivityId activityId       = new ActivityId(entity.getActivityId());
+        AccountId ownerAccountId    = new AccountId(entity.getOwnerAccountId());
         AccountId sourceAccountId   = new AccountId(entity.getSourceAccountId());
         AccountId targetAccountId   = new AccountId(entity.getTargetAccountId());
         Money money                 = new Money(entity.getMoney());
 
-        return new Activity(activityId, sourceAccountId, targetAccountId, entity.getTimestamp(), money);
+        return new Activity(activityId, ownerAccountId, sourceAccountId, targetAccountId, entity.getTimestamp(), money);
     }
 
     ActivityEntity fromModel(Activity model)
     {
         return ActivityEntity.builder()
-            .activityId(model.getId().getValue())
+            .activityId(model.getId() == null ? null : model.getId().getValue())
+            .ownerAccountId(model.getOwnedAccountId().getValue())
             .sourceAccountId(model.getSourceAccountId().getValue())
             .targetAccountId(model.getTargetAccountId().getValue())
             .timestamp(model.getTimestamp())

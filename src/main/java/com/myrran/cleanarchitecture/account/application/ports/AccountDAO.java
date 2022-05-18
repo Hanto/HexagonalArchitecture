@@ -6,4 +6,5 @@ import com.myrran.cleanarchitecture.account.domain.AccountId;
 public interface AccountDAO
 {
     Account loadAccount(AccountId accountId);
+    void saveAccount(Account account);
 }

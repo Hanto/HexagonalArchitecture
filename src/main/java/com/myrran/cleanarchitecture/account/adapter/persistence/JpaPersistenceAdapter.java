@@ -19,7 +19,7 @@ class JpaPersistenceAdapter implements AccountDAO
     private final AccountMapper accountMapper;
     private final ActivityMapper activityMapper;
 
-    // BUSINESS:
+    // MAIN:
     //--------------------------------------------------------------------------------------------------------
 
     @Override
@@ -29,10 +29,21 @@ class JpaPersistenceAdapter implements AccountDAO
             .orElseThrow(EntityNotFoundException::new);
 
         List<ActivityEntity> activityEntities = activityRepository
-            .findBySourceAccountIdOrTargetAccountId(accountId.getValue(), accountId.getValue(), Pageable.ofSize(10));
+            .findByOwnerAccountId(accountId.getValue(), Pageable.ofSize(10));
 
         List<Activity>activities = activityEntities.stream().map(activityMapper::fromEntity).toList();
 
         return accountMapper.fromEntity(accountEntity, activities);
+    }
+
+    @Override
+    public void saveAccount(Account account)
+    {
+        AccountEntity accountEntity = accountMapper.fromModel(account);
+        List<ActivityEntity>activityEntities = account.getLastActivities().getActivities().stream()
+                .map(activityMapper::fromModel).toList();
+
+        accountRepository.save(accountEntity);
+        activityRepository.saveAll(activityEntities);
     }
 }

@@ -17,6 +17,8 @@ class ActivityEntity
     @Id @GeneratedValue
     private Long activityId;
 
+    private Long ownerAccountId;
+
     private Long sourceAccountId;
 
     private Long targetAccountId;

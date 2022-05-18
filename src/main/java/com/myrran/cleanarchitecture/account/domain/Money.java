@@ -34,4 +34,7 @@ public class Money
 
     public boolean isPositive()
     {   return amount.compareTo(BigDecimal.ZERO) >0; }
+
+    public Money negative()
+    {   return new Money(amount.negate()); }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 interface ActivityRepository extends JpaRepository<ActivityEntity, Long>
 {
-    List<ActivityEntity> findBySourceAccountIdOrTargetAccountId(long sourceAccountId, long targetAccountId, Pageable page);
+    List<ActivityEntity> findByOwnerAccountId(long sourceAccountId, Pageable page);
 }

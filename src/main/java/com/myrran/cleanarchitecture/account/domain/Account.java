@@ -38,10 +38,10 @@ public class Account
         if (!mayWithdraw(money) || areSameAccount(accountId, targetAccountId))
             return false;
 
-        Activity withdrawal = new Activity(accountId, targetAccountId, LocalDateTime.now(), money);
+        Activity withdrawal = new Activity(accountId, accountId, targetAccountId, LocalDateTime.now(), money.negative());
         lastActivities.addActivity(withdrawal);
 
-        balance = balance.minus(money);
+        this.balance = balance.minus(money);
 
         return true;
     }
@@ -51,7 +51,7 @@ public class Account
         if (areSameAccount(accountId, sourceAccountId))
             return false;
 
-        Activity deposit = new Activity(sourceAccountId, accountId, LocalDateTime.now(), money);
+        Activity deposit = new Activity(accountId, sourceAccountId, accountId, LocalDateTime.now(), money);
         lastActivities.addActivity(deposit);
 
         balance = balance.plus(money);

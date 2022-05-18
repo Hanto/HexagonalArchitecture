@@ -11,6 +11,8 @@ public class Activity
     @Getter @EqualsAndHashCode.Include
     private ActivityId id;
     @Getter @NonNull
+    private final AccountId ownedAccountId;
+    @Getter @NonNull
     private final AccountId sourceAccountId;
     @Getter @NonNull
     private final AccountId targetAccountId;
@@ -22,7 +24,7 @@ public class Activity
     // CONSTRUCTORS:
     //--------------------------------------------------------------------------------------------------------
 
-    public static Activity of(AccountId sourceAccountId, AccountId targetAccountId,
+    public static Activity of(AccountId ownerdAccountId, AccountId sourceAccountId, AccountId targetAccountId,
         LocalDateTime localDateTime, Money money)
-    {   return new Activity(null, sourceAccountId, targetAccountId, localDateTime, money); }
+    {   return new Activity(null, ownerdAccountId, sourceAccountId, targetAccountId, localDateTime, money); }
 }
