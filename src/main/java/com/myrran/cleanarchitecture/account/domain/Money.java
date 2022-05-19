@@ -1,13 +1,11 @@
 package com.myrran.cleanarchitecture.account.domain;// Created by jhant on 16/05/2022.
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.ToString;
+import lombok.Value;
 
 import java.math.BigDecimal;
 
-@AllArgsConstructor @Getter @ToString
+@Value
 public class Money
 {
     @NonNull
