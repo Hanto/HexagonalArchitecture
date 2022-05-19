@@ -9,6 +9,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class AccountTest
 {
+    // GIVING MONEY:
+    //--------------------------------------------------------------------------------------------------------
+
     @Nested @DisplayName("WHEN: giving money")
     class Give
     {
@@ -171,6 +174,9 @@ class AccountTest
             }
         }
     }
+
+    // RECEIVING:
+    //--------------------------------------------------------------------------------------------------------
 
     @Nested @DisplayName("WHEN: receiving money")
     class Receive

@@ -1,11 +1,13 @@
 package com.myrran.cleanarchitecture.account.domain;// Created by jhant on 16/05/2022.
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NonNull;
-import lombok.Value;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
-@Value
+@AllArgsConstructor @Getter @ToString
 public class Money
 {
     @NonNull
@@ -33,7 +35,7 @@ public class Money
     //--------------------------------------------------------------------------------------------------------
 
     public boolean isPositive()
-    {   return amount.compareTo(BigDecimal.ZERO) >0; }
+    {   return amount.compareTo(BigDecimal.ZERO) >= 0; }
 
     public Money negative()
     {   return new Money(amount.negate()); }

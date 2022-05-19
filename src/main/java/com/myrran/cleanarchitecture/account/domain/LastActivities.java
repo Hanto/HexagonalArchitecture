@@ -1,6 +1,7 @@
 package com.myrran.cleanarchitecture.account.domain;// Created by jhant on 16/05/2022.
 
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-@NoArgsConstructor
+@NoArgsConstructor @ToString
 public class LastActivities
 {
     private final List<Activity> activities = new ArrayList<>();
