@@ -6,12 +6,10 @@ import com.myrran.cleanarchitecture.account.domain.Account;
 import com.myrran.cleanarchitecture.account.domain.AccountId;
 import com.myrran.cleanarchitecture.account.domain.Money;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
-@Component
 @RequiredArgsConstructor
 public class AccountService implements AccountServiceI
 {
@@ -20,9 +18,9 @@ public class AccountService implements AccountServiceI
     @Override @Transactional
     public boolean giveMoney(long sourceAccountId, long targetAccountId, BigDecimal quantity)
     {
-        Account sourceAccount = accountDAO.loadAccount(new AccountId(sourceAccountId));
-        Account targetAccount = accountDAO.loadAccount(new AccountId(targetAccountId));
-        Money money = new Money(quantity);
+        Account sourceAccount   = accountDAO.loadAccount(new AccountId(sourceAccountId));
+        Account targetAccount   = accountDAO.loadAccount(new AccountId(targetAccountId));
+        Money money             = new Money(quantity);
 
         if (!sourceAccount.giveTo(money, targetAccount.getAccountId()))
             return false;
