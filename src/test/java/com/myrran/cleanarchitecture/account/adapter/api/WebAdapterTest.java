@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 
 import java.math.BigDecimal;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = WebAdapter.class)
@@ -26,12 +26,12 @@ public class WebAdapterTest
     @Test
     void testSendMoney() throws Exception
     {
-        MockHttpServletRequestBuilder get = get("/api/send")
+        MockHttpServletRequestBuilder post = post("/api/send")
             .param("sourceAccountId", "1")
             .param("targetAccountId", "2")
             .param("amount", "100");
 
-        mockMvc.perform(get)
+        mockMvc.perform(post)
             .andExpect(status().isOk());
 
         BDDMockito.then(parallelProcessing)
