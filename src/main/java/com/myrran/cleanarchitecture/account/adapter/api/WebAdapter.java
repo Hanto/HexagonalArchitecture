@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@RestController @RequestMapping("/api/kafka")
+@RestController @RequestMapping("/api")
 @RequiredArgsConstructor
 class WebAdapter
 {

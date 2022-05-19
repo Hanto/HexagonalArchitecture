@@ -1,0 +1,40 @@
+package com.myrran.cleanarchitecture.account.adapter.api;// Created by jhant on 19/05/2022.
+
+import com.myrran.cleanarchitecture.account.application.ports.ParallelProcessing;
+import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+
+import java.math.BigDecimal;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(controllers = WebAdapter.class)
+public class WebAdapterTest
+{
+    @Autowired private MockMvc mockMvc;
+    @MockBean private ParallelProcessing parallelProcessing;
+
+    // MAIN:
+    //--------------------------------------------------------------------------------------------------------
+
+    @Test
+    void testSendMoney() throws Exception
+    {
+        MockHttpServletRequestBuilder get = get("/api/send")
+            .param("sourceAccountId", "1")
+            .param("targetAccountId", "2")
+            .param("amount", "100");
+
+        mockMvc.perform(get)
+            .andExpect(status().isOk());
+
+        BDDMockito.then(parallelProcessing)
+            .should().processMoneyOrder(1, 2, BigDecimal.valueOf(100));
+    }
+}
