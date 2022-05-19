@@ -72,7 +72,6 @@ public class AccountServiceTest extends BDDMockito
         @Nested @DisplayName("WHEN: source account doesn't have funds to give")
         class doesntHaveFunds
         {
-
             @Test @DisplayName("THEN: no change in the accounts")
             void failure()
             {
