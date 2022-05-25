@@ -33,4 +33,10 @@ public class AccountService implements AccountServiceI
 
         return true;
     }
+
+    @Override
+    public Account getAccount(long accountId)
+    {
+        return accountDAO.loadAccount(new AccountId(accountId));
+    }
 }
