@@ -6,6 +6,7 @@ import com.myrran.cleanarchitecture.account.domain.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,11 @@ class WebAdapter
     @Autowired private final ParallelProcessing parallelProcessing;
     @Autowired private final AccountServiceI accountService;
     @Autowired private final RestTemplate restTemplate;
-    @Autowired private final AccountDTOMapper mapper;
+    @Autowired private final ActivityDTOAssembler activityAssembler;
+    @Autowired private final AccountDTOAssembler accountAssembler;
+
+    // MAIN:
+    //--------------------------------------------------------------------------------------------------------
 
     @PostMapping("send")
     public void sendMoney(
@@ -36,8 +41,14 @@ class WebAdapter
     public EntityModel<AccountDTO> getAccount(@PathVariable(value="accountId") long accountId)
     {
         Account account = accountService.getAccount(accountId);
-        AccountDTO dto  = mapper.fromModel(account);
-        return EntityModel.of(dto);
+        return accountAssembler.toModel(account);
+    }
+
+    @GetMapping("activities/{accountId}")
+    public CollectionModel<EntityModel<ActivityDTO>> getActivities(@PathVariable(value="accountId") long accountId)
+    {
+        Account account = accountService.getAccount(accountId);
+        return activityAssembler.toCollectionModel(account);
     }
 
     @GetMapping("testEureka")

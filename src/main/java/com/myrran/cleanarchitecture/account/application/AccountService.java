@@ -4,11 +4,13 @@ import com.myrran.cleanarchitecture.account.application.ports.AccountDAO;
 import com.myrran.cleanarchitecture.account.application.ports.AccountServiceI;
 import com.myrran.cleanarchitecture.account.domain.Account;
 import com.myrran.cleanarchitecture.account.domain.AccountId;
+import com.myrran.cleanarchitecture.account.domain.Activity;
 import com.myrran.cleanarchitecture.account.domain.Money;
 import lombok.RequiredArgsConstructor;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class AccountService implements AccountServiceI
@@ -36,7 +38,12 @@ public class AccountService implements AccountServiceI
 
     @Override
     public Account getAccount(long accountId)
+    {   return accountDAO.loadAccount(new AccountId(accountId)); }
+
+    @Override
+    public List<Activity> getActivitiesOf(long accountId)
     {
-        return accountDAO.loadAccount(new AccountId(accountId));
+        Account account = accountDAO.loadAccount(new AccountId(accountId));
+        return account.getLastActivities().getActivities();
     }
 }

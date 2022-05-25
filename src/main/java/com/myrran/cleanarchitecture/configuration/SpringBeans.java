@@ -29,5 +29,4 @@ public class SpringBeans
         restTemplate.setMessageConverters(Traverson.getDefaultMessageConverters(MediaTypes.HAL_JSON));
         return restTemplate;
     }
-
 }

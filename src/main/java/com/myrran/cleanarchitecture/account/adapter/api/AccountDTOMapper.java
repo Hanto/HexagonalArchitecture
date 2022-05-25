@@ -21,7 +21,7 @@ public class AccountDTOMapper
             .build();
     }
 
-    private ActivityDTO fromModel(Activity activity)
+    ActivityDTO fromModel(Activity activity)
     {
         return ActivityDTO.builder()
             .id(activity.getId().getValue())

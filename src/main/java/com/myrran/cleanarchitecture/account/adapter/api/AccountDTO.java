@@ -6,12 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Collection;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class AccountDTO
 {
     private long accountId;
     private BigDecimal money;
-    private List<ActivityDTO>lastActivities;
+    private Collection<ActivityDTO> lastActivities;
 }
