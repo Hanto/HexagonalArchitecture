@@ -20,10 +20,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class WebAdapterTest
 {
     @Autowired private MockMvc mockMvc;
-    @MockBean private AccountServiceI accountService;
     @MockBean private ParallelProcessing parallelProcessing;
+    @MockBean private AccountServiceI accountService;
     @MockBean private RestTemplate restTemplate;
-    @MockBean private AccountDTOMapper mapper;
+    @MockBean private ActivityDTOAssembler activityAssembler;
+    @MockBean private AccountDTOAssembler accountAssembler;
 
     // MAIN:
     //--------------------------------------------------------------------------------------------------------
