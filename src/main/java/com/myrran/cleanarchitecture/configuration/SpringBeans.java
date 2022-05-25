@@ -7,6 +7,8 @@ import com.myrran.cleanarchitecture.common.Hasher;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.hateoas.MediaTypes;
+import org.springframework.hateoas.client.Traverson;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
@@ -22,6 +24,10 @@ public class SpringBeans
 
     @Bean @LoadBalanced
     public RestTemplate restTemplate()
-    {   return new RestTemplate(); }
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setMessageConverters(Traverson.getDefaultMessageConverters(MediaTypes.HAL_JSON));
+        return restTemplate;
+    }
 
 }
