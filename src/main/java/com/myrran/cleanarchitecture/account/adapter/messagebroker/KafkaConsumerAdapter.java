@@ -24,7 +24,8 @@ class KafkaConsumerAdapter
     // CONSUMER:
     //--------------------------------------------------------------------------------------------------------
 
-    @RetryableTopic(
+    @RetryableTopic
+    (
         kafkaTemplate = "moneySendingTemplate",
         attempts = "3",
         backoff = @Backoff(delay = 1000, multiplier = 3.0, maxDelay = 10000),
@@ -34,11 +35,13 @@ class KafkaConsumerAdapter
             EntityNotFoundException.class
         }
     )
-    @KafkaListener(
+    @KafkaListener
+    (
         groupId         = "moneySendingGroup",
         topics          = "moneySendingTopic",
         containerFactory= "moneySendingListener",
-        concurrency     = "6")
+        concurrency     = "6"
+    )
     public void receiveMessage(ConsumerRecord<String, SendMoneyOrderDTO>consumerRecord)
     {
         log.info(consumerRecord);
