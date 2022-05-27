@@ -26,7 +26,7 @@ class JpaPersistenceAdapter implements AccountDAO
     public Account loadAccount(AccountId accountId)
     {
         AccountEntity accountEntity = accountRepository.findById(accountId.getValue())
-            .orElseThrow(EntityNotFoundException::new);
+            .orElseThrow(() -> new EntityNotFoundException(String.format("Account entity with ID: %s not found", accountId)));
 
         List<ActivityEntity> activityEntities = activityRepository
             .findByOwnerAccountId(accountId.getValue(), Pageable.ofSize(10));

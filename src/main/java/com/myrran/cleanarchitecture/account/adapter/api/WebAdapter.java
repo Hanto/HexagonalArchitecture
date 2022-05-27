@@ -28,7 +28,7 @@ class WebAdapter
     // MAIN:
     //--------------------------------------------------------------------------------------------------------
 
-    @PostMapping("send")
+    @GetMapping("send")
     public void sendMoney(
         @NotNull @RequestParam Long sourceAccountId,
         @NotNull @RequestParam Long targetAccountId,

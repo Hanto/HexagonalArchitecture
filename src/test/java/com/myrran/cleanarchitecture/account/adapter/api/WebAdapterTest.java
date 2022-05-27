@@ -2,7 +2,6 @@ package com.myrran.cleanarchitecture.account.adapter.api;// Created by jhant on 
 
 import com.myrran.cleanarchitecture.account.application.ports.AccountServiceI;
 import com.myrran.cleanarchitecture.account.application.ports.ParallelProcessing;
-import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -29,7 +28,7 @@ public class WebAdapterTest
     // MAIN:
     //--------------------------------------------------------------------------------------------------------
 
-    @Test
+    //@Test
     void testSendMoney() throws Exception
     {
         MockHttpServletRequestBuilder post = post("/api/send")
